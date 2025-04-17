@@ -20,9 +20,11 @@ if [[ $FILE = "" ]]; then
 	echo \# Cancelled transfer
 else
 	cd "$FILE"
-	/usr/local/bin/rz --rename --escape --binary --bufsize 4096 
+	/opt/homebrew/bin/rz --rename --escape --binary --bufsize 4096 
 	sleep 1
 	echo
 	echo
-	echo \# Sent \-\> $FILE
+	# 将完整路径中的用户名替换为波浪号
+	DISPLAY_PATH=$(echo "$FILE" | sed "s|^/Users/[^/]*/|~/|")
+	echo \# Sent \-\> $DISPLAY_PATH
 fi
